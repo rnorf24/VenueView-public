@@ -186,9 +186,11 @@ See [`docs/VALIDATION.md`](docs/VALIDATION.md) for reproducible checks and
 [`docs/PUBLICATION_CHECKLIST.md`](docs/PUBLICATION_CHECKLIST.md) before changing
 repository visibility.
 
-## License
+## ## License
 
-Copyright remains with the project author. No open-source license has been
-granted yet. Until a `LICENSE` file is deliberately added, the default is all
-rights reserved; public visibility alone does not grant permission to copy,
-modify, or redistribute the code.
+Copyright © 2026 Rowen Norfolk. All rights reserved.
+
+VenueView is source-available for employment, internship, academic, portfolio, and technical evaluation. Reviewers may inspect and run an unmodified copy for those purposes. Modification, redistribution, production deployment, commercial use, sublicensing, and derivative works are not permitted without prior written permission.
+
+See [LICENSE](LICENSE) for the complete terms. This public portfolio repository is independently maintained and is not an official ORDA product.
+
