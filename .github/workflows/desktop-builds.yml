@@ -1,0 +1,81 @@
+name: Desktop Builds
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+
+jobs:
+  macos:
+    name: macOS desktop artifact
+    runs-on: macos-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Verify tag matches project version
+        if: startsWith(github.ref, 'refs/tags/')
+        run: python packaging/release_info.py --check-tag "${GITHUB_REF_NAME}"
+
+      - name: Run tests
+        run: |
+          python -m pip install -e ".[dev]"
+          python -m pytest
+
+      - name: Build and smoke-test macOS release
+        run: bash packaging/build_release_macos.sh
+
+      - name: Upload unsigned macOS evaluation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: VenueView-macOS-unsigned
+          path: dist/installer/*
+          if-no-files-found: error
+
+  windows:
+    name: Windows desktop artifact
+    runs-on: windows-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Verify tag matches project version
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: pwsh
+        run: python packaging/release_info.py --check-tag "$env:GITHUB_REF_NAME"
+
+      - name: Run tests
+        run: |
+          python -m pip install -e ".[dev]"
+          python -m pytest
+
+      - name: Install Inno Setup
+        shell: powershell
+        run: choco install innosetup --no-progress -y
+
+      - name: Build and smoke-test Windows release
+        shell: powershell
+        run: .\packaging\build_release_windows.ps1
+
+      - name: Upload unsigned Windows evaluation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: VenueView-Windows-unsigned
+          path: dist/installer/*
+          if-no-files-found: error

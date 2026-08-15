@@ -1,0 +1,9 @@
+{
+  "profile_id": "mountain_training_complex",
+  "name": "Mountain Training Complex",
+  "category_prefixes": ["Mountain Training Complex >"],
+  "excluded_category_prefixes": [],
+  "allowed_spaces": [],
+  "output_modes": ["detailed", "combined", "both"],
+  "pilot_status": "demonstration"
+}

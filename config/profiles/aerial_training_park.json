@@ -1,0 +1,9 @@
+{
+  "profile_id": "aerial_training_park",
+  "name": "Aerial Training Park",
+  "category_prefixes": ["Aerial Training Park >"],
+  "excluded_category_prefixes": [],
+  "allowed_spaces": [],
+  "output_modes": ["detailed", "combined", "both"],
+  "pilot_status": "demonstration"
+}

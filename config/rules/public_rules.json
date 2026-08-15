@@ -1,0 +1,152 @@
+{
+  "schema_version": 1,
+  "metadata": {
+    "name": "VenueView fictional demonstration rules",
+    "privacy": "Every term, classification, threshold, and example in this pack is fictional and was created for the public portfolio edition."
+  },
+  "classification_rules": [
+    {
+      "id": "program_summit_skills",
+      "priority": 10,
+      "field": "title",
+      "operator": "starts_with",
+      "value": "Summit Skills",
+      "assign": {"group": "Skating Programs", "function": "Ice Session"}
+    },
+    {
+      "id": "program_summit_skills_full_name",
+      "priority": 11,
+      "field": "title",
+      "operator": "contains",
+      "value": "Summit Skills Sessions",
+      "assign": {"group": "Skating Programs", "function": "Ice Session"}
+    },
+    {
+      "id": "program_community_learn_to_skate",
+      "priority": 20,
+      "field": "title",
+      "operator": "contains",
+      "value": "Community Learn to Skate",
+      "assign": {"group": "Community Programs", "function": "Ice Session"}
+    },
+    {
+      "id": "program_public_skate",
+      "priority": 30,
+      "field": "title",
+      "operator": "contains",
+      "value": "Public Skate",
+      "assign": {"group": "Community Programs", "function": "Ice Session"}
+    },
+    {
+      "id": "program_youth_hockey",
+      "priority": 31,
+      "field": "title",
+      "operator": "contains",
+      "value": "Youth Hockey",
+      "assign": {"group": "Youth Athletics", "function": "Hockey"}
+    },
+    {
+      "id": "generic_hockey_function",
+      "priority": 100,
+      "field": "title",
+      "operator": "contains",
+      "value": "Hockey",
+      "assign": {"function": "Hockey"}
+    },
+    {
+      "id": "generic_meeting_function",
+      "priority": 110,
+      "field": "title",
+      "operator": "contains",
+      "value": "Meeting",
+      "assign": {"function": "Meeting"}
+    },
+    {
+      "id": "generic_expo_function",
+      "priority": 120,
+      "field": "title",
+      "operator": "contains",
+      "value": "Expo",
+      "assign": {"function": "Event"}
+    },
+    {
+      "id": "generic_training_function",
+      "priority": 130,
+      "field": "title",
+      "operator": "contains",
+      "value": "Training",
+      "assign": {"function": "Training"}
+    }
+  ],
+  "ignore_rules": [
+    {
+      "id": "exclude_weather_categories",
+      "priority": 10,
+      "field": "categories",
+      "operator": "contains",
+      "value": "Weather",
+      "reason": "Synthetic weather/system calendar"
+    },
+    {
+      "id": "exclude_astronomical_system_events",
+      "priority": 20,
+      "field": "title",
+      "operator": "regex",
+      "value": "^(?:Sunrise|Sunset|Moonrise|Moonset)$",
+      "reason": "System-generated astronomical event"
+    }
+  ],
+  "combination_rules": [
+    {
+      "id": "combine_summit_skills_blocks",
+      "priority": 10,
+      "enabled": true,
+      "match_all": [
+        {"field": "group", "operator": "exact", "value": "Skating Programs"},
+        {"field": "title", "operator": "starts_with", "value": "Summit Skills"}
+      ],
+      "partition_by": ["local_date", "venue", "space", "group"],
+      "max_gap_minutes": 15,
+      "result": {"title": "Summit Skills Sessions", "function": "Ice Session"},
+      "rationale": "Fictional example: combine adjacent Summit Skills blocks at the same rink when the gap is no more than 15 minutes."
+    },
+    {
+      "id": "combine_summit_skills_full_name_blocks",
+      "priority": 11,
+      "enabled": true,
+      "match_all": [
+        {"field": "group", "operator": "exact", "value": "Skating Programs"},
+        {"field": "title", "operator": "contains", "value": "Summit Skills Sessions"}
+      ],
+      "partition_by": ["local_date", "venue", "space", "group"],
+      "max_gap_minutes": 15,
+      "result": {"title": "Summit Skills Sessions", "function": "Ice Session"},
+      "rationale": "Fictional example: continue an already normalized block only when it remains adjacent at the same rink."
+    },
+    {
+      "id": "combine_same_title_north_arena_hockey_blocks",
+      "priority": 20,
+      "enabled": true,
+      "match_all": [
+        {"field": "venue", "operator": "exact", "value": "North Arena"},
+        {"field": "function", "operator": "exact", "value": "Hockey"}
+      ],
+      "partition_by": ["local_date", "venue", "space", "title", "group", "function"],
+      "max_gap_minutes": 10,
+      "result": {},
+      "rationale": "Fictional example: combine same-title hockey blocks only within the same rink and date when the gap is no more than 10 minutes."
+    },
+    {
+      "id": "combine_same_title_same_location_events",
+      "priority": 1000,
+      "enabled": true,
+      "field": "title",
+      "operator": "regex",
+      "value": ".+",
+      "partition_by": ["local_date", "venue", "space", "title"],
+      "max_gap_minutes": 15,
+      "result": {},
+      "rationale": "Fictional fallback: combine matching titles only when the date and location match and the gap is no more than 15 minutes."
+    }
+  ]
+}

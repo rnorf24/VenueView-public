@@ -1,0 +1,67 @@
+[
+  {
+    "date": "2026-07-17",
+    "start": "2026-07-17T07:00:00-04:00",
+    "end": "2026-07-17T08:50:00-04:00",
+    "venue": "North Arena",
+    "space": "Rink A",
+    "group": "Skating Programs",
+    "function": "Ice Session",
+    "title": "Summit Skills Sessions",
+    "needs_review": [],
+    "source_count": 2,
+    "applied_rules": ["program_summit_skills", "combine_summit_skills_blocks"]
+  },
+  {
+    "date": "2026-07-17",
+    "start": "2026-07-17T07:00:00-04:00",
+    "end": "2026-07-17T07:50:00-04:00",
+    "venue": "North Arena",
+    "space": "Rink B",
+    "group": "Skating Programs",
+    "function": "Ice Session",
+    "title": "Summit Skills Sessions",
+    "needs_review": [],
+    "source_count": 1,
+    "applied_rules": ["program_summit_skills", "combine_summit_skills_blocks"]
+  },
+  {
+    "date": "2026-07-17",
+    "start": "2026-07-17T09:30:00-04:00",
+    "end": "2026-07-17T10:20:00-04:00",
+    "venue": "North Arena",
+    "space": "Rink A",
+    "group": "Skating Programs",
+    "function": "Ice Session",
+    "title": "Summit Skills Sessions",
+    "needs_review": [],
+    "source_count": 1,
+    "applied_rules": ["program_summit_skills", "combine_summit_skills_blocks"]
+  },
+  {
+    "date": "2026-07-17",
+    "start": "2026-07-17T13:00:00-04:00",
+    "end": "2026-07-17T14:00:00-04:00",
+    "venue": "North Arena",
+    "space": "Rink C",
+    "group": "Community Programs",
+    "function": "Ice Session",
+    "title": "Community Learn to Skate",
+    "needs_review": [],
+    "source_count": 1,
+    "applied_rules": ["program_community_learn_to_skate"]
+  },
+  {
+    "date": "2026-07-19",
+    "start": "2026-07-19T13:00:00-04:00",
+    "end": "2026-07-19T14:00:00-04:00",
+    "venue": "North Arena",
+    "space": "Rink C",
+    "group": "Community Programs",
+    "function": "Ice Session",
+    "title": "Community Learn to Skate",
+    "needs_review": [],
+    "source_count": 1,
+    "applied_rules": ["program_community_learn_to_skate"]
+  }
+]

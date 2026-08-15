@@ -1,0 +1,72 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//VenueView//Fictional Public Portfolio Fixture//EN
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:venueview-synthetic-skills-open-1
+DTSTAMP:20260701T120000Z
+DTSTART;TZID=America/New_York:20260717T070000
+DTEND;TZID=America/New_York:20260717T075000
+SUMMARY:Summit Skills - Open
+CATEGORIES:North Arena > Sports > Rinks > Rink A
+END:VEVENT
+BEGIN:VEVENT
+UID:venueview-synthetic-skills-advanced-1
+DTSTAMP:20260701T120000Z
+DTSTART;TZID=America/New_York:20260717T080000
+DTEND;TZID=America/New_York:20260717T085000
+SUMMARY:Summit Skills - Advanced
+CATEGORIES:North Arena > Sports > Rinks > Rink A
+END:VEVENT
+BEGIN:VEVENT
+UID:venueview-synthetic-skills-open-2
+DTSTAMP:20260701T120000Z
+DTSTART;TZID=America/New_York:20260717T093000
+DTEND;TZID=America/New_York:20260717T102000
+SUMMARY:Summit Skills - Open
+CATEGORIES:North Arena > Sports > Rinks > Rink A
+END:VEVENT
+BEGIN:VEVENT
+UID:venueview-synthetic-skills-other-rink
+DTSTAMP:20260701T120000Z
+DTSTART;TZID=America/New_York:20260717T070000
+DTEND;TZID=America/New_York:20260717T075000
+SUMMARY:Summit Skills - Foundations
+CATEGORIES:North Arena > Sports > Rinks > Rink B
+END:VEVENT
+BEGIN:VEVENT
+UID:venueview-synthetic-learn-series
+DTSTAMP:20260701T120000Z
+DTSTART;TZID=America/New_York:20260717T130000
+DTEND;TZID=America/New_York:20260717T140000
+RRULE:FREQ=DAILY;COUNT=3
+EXDATE;TZID=America/New_York:20260718T130000
+SUMMARY:Community Learn to Skate
+CATEGORIES:North Arena > Sports > Rinks > Rink C
+END:VEVENT
+BEGIN:VEVENT
+UID:venueview-synthetic-multi-room
+DTSTAMP:20260701T120000Z
+DTSTART;TZID=America/New_York:20260717T100000
+DTEND;TZID=America/New_York:20260717T113000
+SUMMARY:Community Planning Meeting
+CATEGORIES:Summit Events Center > Level 2 > Harbor Hall A,Summit Events Center > Level 2 > Harbor Hall B
+END:VEVENT
+BEGIN:VEVENT
+UID:venueview-synthetic-all-day
+DTSTAMP:20260701T120000Z
+DTSTART;VALUE=DATE:20260718
+DTEND;VALUE=DATE:20260719
+SUMMARY:Public Operations Day
+CATEGORIES:Aerial Training Park > Operations > Event Grounds
+END:VEVENT
+BEGIN:VEVENT
+UID:venueview-synthetic-cancelled
+DTSTAMP:20260701T120000Z
+DTSTART;TZID=America/New_York:20260717T160000
+DTEND;TZID=America/New_York:20260717T170000
+SUMMARY:Cancelled Synthetic Event
+STATUS:CANCELLED
+CATEGORIES:North Arena > Sports > Rinks > Rink C
+END:VEVENT
+END:VCALENDAR

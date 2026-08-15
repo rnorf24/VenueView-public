@@ -1,0 +1,9 @@
+{
+  "profile_id": "north_arena_event_spaces",
+  "name": "North Arena Event Spaces",
+  "category_prefixes": ["North Arena >"],
+  "excluded_category_prefixes": ["North Arena > Sports >"],
+  "allowed_spaces": ["Aurora Lounge", "Concourse", "Heritage Room"],
+  "output_modes": ["detailed", "combined", "both"],
+  "pilot_status": "demonstration"
+}

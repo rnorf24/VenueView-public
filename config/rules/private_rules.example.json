@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "metadata": {
+    "name": "Fictional private-overlay schema example",
+    "instructions": "Copy this file outside the repository, replace only the SAMPLE values, and never commit an operational copy."
+  },
+  "classification_rules": [
+    {
+      "id": "sample_program_key",
+      "priority": 10,
+      "field": "title",
+      "operator": "contains",
+      "value": "SAMPLE PROGRAM KEY",
+      "assign": {"group": "SAMPLE GROUP", "function": "SAMPLE FUNCTION"}
+    }
+  ],
+  "ignore_rules": [],
+  "combination_rules": [
+    {
+      "id": "combine_sample_program_blocks",
+      "priority": 10,
+      "enabled": true,
+      "match_all": [
+        {"field": "group", "operator": "exact", "value": "SAMPLE GROUP"},
+        {"field": "title", "operator": "contains", "value": "SAMPLE PROGRAM KEY"}
+      ],
+      "partition_by": ["local_date", "venue", "space", "group"],
+      "max_gap_minutes": 12,
+      "result": {"title": "SAMPLE DISPLAY TITLE", "function": "SAMPLE FUNCTION"}
+    }
+  ]
+}

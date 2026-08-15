@@ -1,0 +1,9 @@
+{
+  "profile_id": "north_arena_rinks",
+  "name": "North Arena Rinks",
+  "category_prefixes": ["North Arena > Sports > Rinks >"],
+  "excluded_category_prefixes": [],
+  "allowed_spaces": ["Rink A", "Rink B", "Rink C"],
+  "output_modes": ["detailed", "combined", "both"],
+  "pilot_status": "demonstration"
+}

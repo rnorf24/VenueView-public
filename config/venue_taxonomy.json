@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "source_policy": "Fictional demonstration taxonomy only. No organization-derived names or operational data.",
+  "venues": {
+    "Summit Events Center": {
+      "Level 1": ["Atrium", "Cedar Hall"],
+      "Level 2": ["Harbor Hall A", "Harbor Hall B", "Harbor Hall C", "Studio 1", "Studio 2"],
+      "Level 3": ["Boardroom", "Gallery", "Terrace Lobby"]
+    },
+    "North Arena": {
+      "Event Spaces": ["Aurora Lounge", "Concourse", "Heritage Room"],
+      "Sports": ["Indoor Track"],
+      "Rinks": ["Rink A", "Rink B", "Rink C"]
+    },
+    "Mountain Training Complex": {
+      "Activities": ["Climbing Wall", "Fitness Lab", "Trail Skills Course"],
+      "Operations": ["Group Meeting Room", "Operations Center"],
+      "Training": ["Endurance Loop", "Field House"]
+    },
+    "Aerial Training Park": {
+      "Activities": ["Observation Deck", "Zip Course"],
+      "Meeting Rooms": ["Landing Room", "Summit Room"],
+      "Operations": ["Event Grounds", "Welcome Center"],
+      "Sports": ["Aerial Hill", "Jump Hill"]
+    }
+  }
+}

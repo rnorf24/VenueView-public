@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">VenueView</title>
+  <desc id="desc">A calendar containing a small V nested inside a larger V</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071c3e"/>
+      <stop offset="1" stop-color="#0b2d57"/>
+    </linearGradient>
+    <linearGradient id="calendar" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#1478f2"/>
+      <stop offset="1" stop-color="#25c8c6"/>
+    </linearGradient>
+    <linearGradient id="large-v" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#126cf0"/>
+      <stop offset="1" stop-color="#20c8c2"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="512" height="512" rx="104" fill="url(#background)"/>
+  <rect x="96" y="112" width="320" height="322" rx="48" fill="#f7f9fc"/>
+  <path d="M96 160c0-27 21-48 48-48h224c27 0 48 21 48 48v58H96Z" fill="url(#calendar)"/>
+  <circle cx="164" cy="158" r="21" fill="#09234a"/>
+  <circle cx="348" cy="158" r="21" fill="#09234a"/>
+  <rect x="148" y="74" width="32" height="93" rx="16" fill="#ffc23d"/>
+  <rect x="332" y="74" width="32" height="93" rx="16" fill="#ffc23d"/>
+
+  <path d="M157 260 256 410l99-150" fill="none" stroke="url(#large-v)" stroke-width="50" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path d="M207 278 256 356l49-78" fill="none" stroke="#f7f9fc" stroke-width="19" stroke-linecap="square" stroke-linejoin="miter"/>
+</svg>
