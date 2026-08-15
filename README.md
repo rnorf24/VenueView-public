@@ -36,9 +36,9 @@ VenueView converts that workflow into a reviewable pipeline:
 
 VenueView originated while its creator worked for ORDA at the Lake Placid
 Conference Center. He first used it to prepare Excel function sheets for his
-own operational workflow; a supervisor and coworkers subsequently continued
+own operational workflow; the overarching department and coworkers subsequently continued
 using it within the department. VenueView installers were submitted to ORDA IT
-and whitelisted for use on the internal network. The creator also delivered an
+and whitelisted for use on the internal network. Creator also delivered an
 approximately 45-minute presentation and user walkthrough to roughly 20 staff
 members covering the problem, purpose, workflow, and operation of the
 application. The presentation generated interest from operations leadership
