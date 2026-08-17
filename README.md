@@ -123,10 +123,8 @@ in memory and is not uploaded to a hosted service.
 
 ## Fictional demonstration configuration
 
-The repository ships six imaginary profiles spanning an events center, arena,
-training complex, and aerial park. The included rules demonstrate prefix and
-normalized-title classification, category exclusions, location constraints,
-inclusive maximum-gap boundaries, conflict blocking, and a generic fallback.
+The repository ships six imaginary profiles including an events center, arena,
+training complex, and aerial park. The included rules demonstrate classification based on title beginnings and standardized title variations, category exclusions, location constraints. The demonstration rules include maximum allowed time gaps, safeguards that prevent merging across conflicting bookings, and a conservative fallback for matching events at the same location.
 
 These examples prove the configuration model without revealing how any real
 organization names locations or makes scheduling decisions. See
@@ -134,16 +132,15 @@ organization names locations or makes scheduling decisions. See
 
 ## Privacy boundary
 
-The parser allowlists only the fields needed for scheduling and grouping:
+The parser allow lists only the fields needed for scheduling and grouping:
 
-```text
+
 UID, SUMMARY, DTSTART, DTEND, DURATION, RRULE, RDATE, EXDATE,
 RECURRENCE-ID, CATEGORIES, LOCATION, STATUS
-```
+
 
 It does not ingest descriptions, contacts, URLs, attachments, organizers, or
-attendees. Titles and UIDs can still be sensitive, so audit output is aggregate
-only and operational output requires an explicit acknowledgement.
+attendees. Because event titles can contain private operational information, privacy audits report only summary counts and never expose event titles or source UIDs. Before VenueView displays or exports event-level data, the user must confirm that they are authorized to process it. Source UIDs are not included in exported files.
 
 Private rules can be loaded from a per-user file outside the repository. The
 public build excludes private configuration by default. See
@@ -155,12 +152,9 @@ VenueView is an assisted preparation tool, not a source-of-truth scheduling
 system. It does not edit or synchronize calendars, resolve resource conflicts,
 infer setup requirements from descriptions, provide remote collaboration,
 authenticate multiple users, or guarantee that organization-specific rules are
-correct. A person must review outputs before operational use.
+correct. A user must review outputs before operational use.
 
-The repository includes packaging definitions, but public release artifacts are
-not automatically trusted production installers. Code signing, notarization,
-endpoint-security review, and clean-machine acceptance remain distribution
-responsibilities. See [`docs/LIMITATIONS.md`](docs/LIMITATIONS.md).
+VenueView includes the configuration and scripts needed to build desktop installers. A newly built installer should not be considered production-ready or organization-approved until it has been signed, notarized where applicable, reviewed by the receiving organization’s IT and endpoint-security systems, and successfully tested on a clean computer. ORDA’s internal approval applied to the specific installers submitted for review and does not automatically extend to public or future builds. See docs/LIMITATIONS.md.
 
 ## Repository map
 
@@ -175,13 +169,17 @@ packaging/                  Desktop bundle and installer definitions
 docs/                       Design, privacy, validation, and portfolio context
 ```
 
-## Version and status
+## Project status
 
-`1.0.0-rc.3` is a public portfolio release candidate derived from the internal
-`1.0.0-rc.2` code line and then sanitized in a new, history-free tree. The
-version change is intentional: the public candidate has different
-configuration, fixtures, documentation, and validation requirements.
+This repository contains VenueView `1.0.0-rc.3`, the sanitized public portfolio
+edition. It uses fictional venue profiles, rules, calendar events, and expected
+outputs while preserving the application’s representative architecture and
+workflow.
 
+This release candidate is intended for demonstration, technical evaluation,
+and portfolio review. It is separate from organization-specific deployments
+and should not be interpreted as an official ORDA release or a pre-approved
+production installer.
 See [`docs/VALIDATION.md`](docs/VALIDATION.md) for reproducible checks and
 [`docs/PUBLICATION_CHECKLIST.md`](docs/PUBLICATION_CHECKLIST.md) before changing
 repository visibility.
