@@ -4,50 +4,74 @@ Copyright © 2026 Rowen Norfolk. All rights reserved.
 
 1. Ownership
 
-VenueView and the original source code, documentation, configuration design, user interface, tests, and other original materials contained in this repository are owned by Rowen Norfolk unless otherwise stated.
+VenueView and the original source code, documentation, configuration design,
+user interface, tests, and other original materials contained in this repository
+are owned by Rowen Norfolk unless otherwise stated.
 
 2. Limited Evaluation Permission
 
-Permission is granted to view, download, and run an unmodified copy of this software solely for:
+Permission is granted to view, download, and run an unmodified copy of this
+software solely for:
 
 * employment or internship evaluation;
 * academic review;
-* personal portfolio evaluation; or
+* portfolio review; or
 * security and technical assessment.
 
-This limited permission is non-exclusive, non-transferable, and does not transfer ownership of any portion of the project.
+An employer, recruiter, academic institution, or technical reviewer may use
+these permissions solely to evaluate the project or its author. These
+permissions do not allow VenueView to be used for the organization's operations.
+
+This limited permission is non-exclusive, non-transferable, and does not
+transfer ownership of any portion of the project.
 
 3. Restrictions
 
 Except for the limited evaluation permission above, no permission is granted to:
 
-* copy or redistribute the project;
+* redistribute the project or provide copies to another person or organization;
 * modify or create derivative works;
 * publish or sublicense the source code;
-* use the software in a commercial, organizational, or production environment;
+* use the software to manage real operations, provide services, or run
+  production workloads;
 * sell, license, or incorporate the software into another product or service; or
 * represent VenueView as the work of another person or organization.
 
 Any additional use requires prior written permission from the copyright owner.
 
-Permissions necessarily provided through the features and terms of the repository’s hosting platform remain unaffected.
+Permissions necessarily provided through the features and terms of the
+repository's hosting platform, including viewing and forking within that
+platform, remain unaffected.
 
 4. Demonstration Material
 
-The venue profiles, events, operational rules, thresholds, expected outputs, and other demonstration content included in this public repository are fictional. They may not be represented as the configuration or operating procedures of the New York State Olympic Regional Development Authority or any other organization.
+The venue profiles, events, operational rules, thresholds, expected outputs,
+and other demonstration content included in this public repository are
+fictional. They may not be represented as the configuration or operating
+procedures of the New York State Olympic Regional Development Authority or any
+other organization.
 
 5. Organization Disclaimer
 
-VenueView is independently developed and maintained. It is not an official product of, endorsed by, sponsored by, or supported by the New York State Olympic Regional Development Authority. References to ORDA and publicly advertised venue names provide historical and professional context only.
+VenueView is independently developed and maintained. It is not an official
+product of, endorsed by, sponsored by, or supported by the New York State
+Olympic Regional Development Authority. References to ORDA and publicly
+advertised venue names provide historical and professional context only.
 
 6. Third-Party Software
 
-This license applies only to original material owned by Rowen Norfolk. Third-party packages and dependencies remain subject to their respective licenses and copyright notices.
+This license applies only to original material owned by Rowen Norfolk.
+Third-party packages and dependencies remain subject to their respective
+licenses and copyright notices.
 
 7. Disclaimer of Warranty
 
-THE SOFTWARE IS PROVIDED “AS IS,” WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, ACCURACY, SECURITY, AND NON-INFRINGEMENT.
+THE SOFTWARE IS PROVIDED “AS IS,” WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE, ACCURACY, SECURITY, AND NON-INFRINGEMENT.
 
-IN NO EVENT SHALL THE COPYRIGHT OWNER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM THE SOFTWARE OR ITS USE.
+IN NO EVENT SHALL THE COPYRIGHT OWNER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY ARISING FROM THE SOFTWARE OR ITS USE.
 
-For permission beyond portfolio evaluation, contact the copyright owner through the public repository profile.
+For permission beyond portfolio evaluation, contact the copyright owner through
+the public repository profile.

@@ -1,84 +1,62 @@
 # VenueView
 
-VenueView is a local-first Python application that turns large `.ics` calendar
-exports into venue-specific operational schedules and editable Excel function
-sheets. It expands recurring events, preserves multi-room assignments, applies
-configurable venue profiles, classifies events, proposes carefully bounded
-combinations, and highlights uncertain records for human review.
+VenueView is a local Python application that turns large `.ics` calendar exports into venue-specific CSV and Excel schedules for a chosen date range. It handles recurring and multi-day events, filters them with configurable venue profiles, classifies them, and suggests groups of related events. If it is not confident about a result, it sends that record to the review screen instead of deciding on its own.
 
-This repository is the sanitized public portfolio edition of a tool created in
-response to a real workplace scheduling problem. The project history names the
-New York State Olympic Regional Development Authority (ORDA) and relevant
-publicly advertised facilities for context. Every venue definition in the
-executable configuration, event, rule, threshold, and expected output is
-fictional. Employer data, internal configuration, real schedules, generated
-operational files, and private Git history are intentionally excluded.
+This public version comes from a tool I built to solve a scheduling problem during my internship at the New York State Olympic Regional Development Authority (ORDA). I have named ORDA and publicly listed facilities to explain where the project came from, but the profiles, events, rules, thresholds, and expected outputs in this repository were created for demonstration. Employer data, internal configurations, real schedules, generated operational files, and private Git history are not included.
 
-> VenueView is an independently maintained portfolio project. This repository
-> is not an official product of, endorsed by, or supported by any current or
-> former employer.
+> I maintain this public repository independently. It is not an official ORDA product.
 
-## Why it exists
+## Purpose
 
-Preparing weekly function sheets from a large shared calendar required staff to
-find relevant events, reconcile recurring and multi-location entries, group
-related blocks, and manually transfer the result into spreadsheets. That work
-was repetitive, difficult to audit, and vulnerable to transcription errors.
+To prepare weekly function sheets, staff had to filter a live calendar by date and venue, sort out recurring and multi-location events, group related blocks, and copy the results into Excel. It took a lot of repetitive work and created opportunities for transcription errors.
 
-VenueView converts that workflow into a reviewable pipeline:
+VenueView handles most of that process while leaving uncertain decisions to a person:
 
 1. Import a local calendar export.
-2. Expand recurrences inside a bounded date window.
+2. Expand recurring events within the selected date range.
 3. Select only the locations covered by a venue profile.
-4. Apply explicit JSON classification, exclusion, and combination rules.
+4. Apply JSON rules for classification, exclusion, and event combinations.
 5. Review ambiguous records and proposed combinations.
-6. Download detailed or combined CSV and Excel function sheets.
-
-VenueView originated while its creator worked for ORDA at the Lake Placid
-Conference Center. He first used it to prepare Excel function sheets for his
-own operational workflow; the overarching department and coworkers subsequently continued
-using it within the department. VenueView installers were submitted to ORDA IT
-and whitelisted for use on the internal network. Creator also delivered an
-approximately 45-minute presentation and user walkthrough to roughly 20 staff
-members covering the problem, purpose, workflow, and operation of the
-application. The presentation generated interest from operations leadership
-responsible for the Olympic Center. These facts describe the private project's
-history; they do not mean that this public repository is an official or
-ORDA-supported release.
-
-## What this public edition demonstrates
-
-- A modular RFC 5545 processing pipeline for `RRULE`, `RDATE`, `EXDATE`,
-  cancellations, and detached recurrence exceptions
-- Profile-driven venue and room filtering with multi-location expansion
-- JSON rule packs for event classification, exclusion, and controlled merging
-- Human-readable combination review with keep/separate decisions
-- Privacy-conscious aggregate auditing
-- Formula-injection-safe CSV and Excel generation
-- A weekly function-sheet workbook with editable setup and equipment fields
-- A local-only browser interface with in-memory upload processing
-- Loopback request checks, CSRF protection, security headers, upload limits,
-  and expiring in-memory sessions
-- Windows and macOS packaging definitions and release integrity manifests
-- Synthetic regression fixtures and automated tests
+6. Export a detailed or combined function sheet as a CSV or Excel file.
 
 ## Architecture
 
 ```mermaid
 flowchart TD
     A["Local ICS export"] --> B["Allowlisted parser"]
-    B --> C["Bounded recurrence expansion"]
+    B --> C["Recurrence expansion in selected date range"]
     C --> D["Venue profile and room expansion"]
     D --> E["Classification and exclusion"]
     E --> F["Detailed event stream"]
-    F --> G["Explicit combination rules"]
+    F --> G["Rule-based event combinations"]
     G --> H["Combined event stream"]
     F --> I["Review and exports"]
     H --> I
 ```
 
-The interface and exporters call the same processing engine; calendar logic is
-not duplicated in the UI.
+The interface and exporters use the same processing engine, so I did not duplicate calendar logic in the UI.
+
+## Project history
+
+I created VenueView in July 2026 after seeing how much time this scheduling workflow took during my internship. The first version was a command-line tool I used to generate function sheets and automate much of the event-classification process. It could not yet combine related events, had no interface, and required Python knowledge to operate.
+
+Before my internship ended in August, I expanded the prototype into a standalone application that someone without Python experience could use. I added the interface, the combination and review workflow, packaging, and the other features needed to hand it off.
+
+I gave an hour-long walkthrough to about 20 ORDA staff members, including members of the IT team. I explained how the tool worked, when to use it, and which parts of the old workflow it replaced. The presentation also generated interest from operations leadership responsible for the Olympic Center. Specific VenueView installers were then submitted to ORDA IT for internal review and whitelisted for use on the internal network. That review covered only those installers, not this public repository or later builds.
+
+## What I built
+
+- RFC 5545 processing for `RRULE`, `RDATE`, `EXDATE`, cancellations, and detached recurrence exceptions
+- Venue and room filtering driven by configurable profiles, including multi-location expansion
+- JSON rule packs for classification, exclusions, and event combinations
+- A review screen for keeping or separating suggested event combinations
+- An aggregate audit mode that reports counts without exposing event titles or source UIDs
+- Protection against formula injection in CSV and Excel exports
+- A weekly function-sheet workbook with editable setup and equipment fields
+- A local browser interface that processes uploads in memory
+- Loopback request checks, CSRF protection, security headers, upload limits, and expiring in-memory sessions
+- Windows and macOS packaging definitions with release-integrity manifests
+- Synthetic regression fixtures and automated tests
 
 ## Quick start
 
@@ -90,7 +68,7 @@ python -m pip install -e ".[dev]"
 python -m pytest
 ```
 
-Run an aggregate audit of the fictional sample calendar:
+Run an aggregate audit of the sample calendar:
 
 ```bash
 venueview audit data/synthetic/sample_calendar.ics \
@@ -118,43 +96,39 @@ Run the local interface:
 venueview-ui --config-dir config
 ```
 
-It opens a browser page on the local computer. The source calendar is processed
-in memory and is not uploaded to a hosted service.
+It opens a browser page on the local computer. The source calendar is processed in memory and is not uploaded to a hosted service.
 
-## Fictional demonstration configuration
+## Demonstration configuration
 
-The repository ships six imaginary profiles including an events center, arena,
-training complex, and aerial park. The included rules demonstrate classification based on title beginnings and standardized title variations, category exclusions, location constraints. The demonstration rules include maximum allowed time gaps, safeguards that prevent merging across conflicting bookings, and a conservative fallback for matching events at the same location.
+This repository comes with six fictional venue profiles. They represent an events center, an arena, a training complex, an aerial park, and other demonstration settings. The examples cover venue hierarchies, room selection, event-title classification, category exclusions, time-gap rules, safeguards against combining conflicting events, and a fallback rule for matching events at the same location.
 
-These examples prove the configuration model without revealing how any real
-organization names locations or makes scheduling decisions. See
-[`docs/COMBINATION_RULES.md`](docs/COMBINATION_RULES.md).
+None of the profiles, rules, thresholds, events, or expected outputs came from ORDA. They were created for this public repository and are not meant to reproduce ORDA's internal scheduling setup. See [`docs/COMBINATION_RULES.md`](docs/COMBINATION_RULES.md).
 
 ## Privacy boundary
 
-The parser allow lists only the fields needed for scheduling and grouping:
+VenueView reads only the calendar fields it needs for scheduling and grouping:
 
-
+```text
 UID, SUMMARY, DTSTART, DTEND, DURATION, RRULE, RDATE, EXDATE,
 RECURRENCE-ID, CATEGORIES, LOCATION, STATUS
+```
 
-
-It does not ingest descriptions, contacts, URLs, attachments, organizers, or
-attendees. Because event titles can contain private operational information, privacy audits report only summary counts and never expose event titles or source UIDs. Before VenueView displays or exports event-level data, the user must confirm that they are authorized to process it. Source UIDs are not included in exported files.
-
-Private rules can be loaded from a per-user file outside the repository. The
-public build excludes private configuration by default. See
-[`docs/PRIVACY.md`](docs/PRIVACY.md) and [`docs/SECURITY.md`](docs/SECURITY.md).
+The parser ignores event descriptions, contacts, URLs, attachments, organizers, and attendees. Event titles can still contain private operational information, so the audit command reports only summary counts and does not expose titles or source UIDs. Before VenueView displays or exports event-level data, users must confirm that they are authorized to process the calendar information. Source UIDs are not included in exported files.
 
 ## Important limitations
 
-VenueView is an assisted preparation tool, not a source-of-truth scheduling
-system. It does not edit or synchronize calendars, resolve resource conflicts,
-infer setup requirements from descriptions, provide remote collaboration,
-authenticate multiple users, or guarantee that organization-specific rules are
-correct. A user must review outputs before operational use.
+VenueView prepares and organizes event data. It does not manage calendars or resources.
 
-VenueView includes the configuration and scripts needed to build desktop installers. A newly built installer should not be considered production-ready or organization-approved until it has been signed, notarized where applicable, reviewed by the receiving organization’s IT and endpoint-security systems, and successfully tested on a clean computer. ORDA’s internal approval applied to the specific installers submitted for review and does not automatically extend to public or future builds. See docs/LIMITATIONS.md.
+It does not:
+
+- edit or synchronize calendars
+- resolve resource conflicts
+- infer setup requirements from event descriptions
+- provide remote collaboration
+- authenticate multiple users
+- guarantee that organization-specific rules are correct
+
+The repository also includes the files used to build desktop installers. Those files package the application; they do not make every build an approved or supported release. See [`docs/LIMITATIONS.md`](docs/LIMITATIONS.md).
 
 ## Repository map
 
@@ -171,24 +145,16 @@ docs/                       Design, privacy, validation, and portfolio context
 
 ## Project status
 
-This repository contains VenueView `1.0.0-rc.3`, the sanitized public portfolio
-edition. It uses fictional venue profiles, rules, calendar events, and expected
-outputs while preserving the application’s representative architecture and
-workflow.
+**Current version:** VenueView `1.0.0-rc.3`.
 
-This release candidate is intended for demonstration, technical evaluation,
-and portfolio review. It is separate from organization-specific deployments
-and should not be interpreted as an official ORDA release or a pre-approved
-production installer.
-See [`docs/VALIDATION.md`](docs/VALIDATION.md) for reproducible checks and
-[`docs/PUBLICATION_CHECKLIST.md`](docs/PUBLICATION_CHECKLIST.md) before changing
-repository visibility.
+This release candidate uses fictional venue profiles and rules, along with synthetic calendar events and expected outputs, so the public repository can show how the application works without including employer data. It is meant for demonstration and technical evaluation and is separate from organization-specific builds.
 
-## ## License
+See [`docs/VALIDATION.md`](docs/VALIDATION.md) for reproducible checks and [`docs/PUBLICATION_CHECKLIST.md`](docs/PUBLICATION_CHECKLIST.md) before changing repository visibility.
+
+## License
 
 Copyright © 2026 Rowen Norfolk. All rights reserved.
 
 VenueView is source-available for employment, internship, academic, portfolio, and technical evaluation. Reviewers may inspect and run an unmodified copy for those purposes. Modification, redistribution, production deployment, commercial use, sublicensing, and derivative works are not permitted without prior written permission.
 
-See [LICENSE](LICENSE) for the complete terms. This public portfolio repository is independently maintained and is not an official ORDA product.
-
+See [LICENSE](LICENSE) for the complete terms.
